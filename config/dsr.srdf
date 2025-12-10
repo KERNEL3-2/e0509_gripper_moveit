@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<robot name="e0509_with_gripper">
+    <group name="arm">
+        <chain base_link="base_link" tip_link="link_6" />
+    </group>
+
+    <group name="gripper">
+        <joint name="gripper_rh_r1"/>
+        <joint name="gripper_rh_r2"/>
+        <joint name="gripper_rh_l1"/>
+        <joint name="gripper_rh_l2"/>
+    </group>
+
+    <end_effector name="gripper" parent_link="link_6" group="gripper"/>
+
+    <group_state name="home" group="arm">
+        <joint name="joint_1" value="0" />
+        <joint name="joint_2" value="0" />
+        <joint name="joint_3" value="0" />
+        <joint name="joint_4" value="0" />
+        <joint name="joint_5" value="0" />
+        <joint name="joint_6" value="0" />
+    </group_state>
+
+    <group_state name="open" group="gripper">
+        <joint name="gripper_rh_r1" value="0" />
+        <joint name="gripper_rh_r2" value="0" />
+        <joint name="gripper_rh_l1" value="0" />
+        <joint name="gripper_rh_l2" value="0" />
+    </group_state>
+
+    <group_state name="close" group="gripper">
+        <joint name="gripper_rh_r1" value="1.1" />
+        <joint name="gripper_rh_r2" value="1.1" />
+        <joint name="gripper_rh_l1" value="1.1" />
+        <joint name="gripper_rh_l2" value="1.1" />
+    </group_state>
+
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
+
+    <!-- Robot Arm Collisions -->
+    <disable_collisions link1="base_link" link2="link_1" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="link_2" reason="Never" />
+    <disable_collisions link1="link_1" link2="link_2" reason="Adjacent" />
+    <disable_collisions link1="link_1" link2="link_3" reason="Never" />
+    <disable_collisions link1="link_2" link2="link_3" reason="Adjacent" />
+    <disable_collisions link1="link_3" link2="link_4" reason="Adjacent" />
+    <disable_collisions link1="link_3" link2="link_5" reason="Never" />
+    <disable_collisions link1="link_3" link2="link_6" reason="Never" />
+    <disable_collisions link1="link_4" link2="link_5" reason="Adjacent" />
+    <disable_collisions link1="link_5" link2="link_6" reason="Adjacent" />
+    
+    <!-- Gripper Collisions -->
+    <disable_collisions link1="link_6" link2="gripper_rh_p12_rn_base" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_base" link2="gripper_rh_p12_rn_r1" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_base" link2="gripper_rh_p12_rn_r2" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_base" link2="gripper_rh_p12_rn_l1" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_base" link2="gripper_rh_p12_rn_l2" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_r1" link2="gripper_rh_p12_rn_r2" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_l1" link2="gripper_rh_p12_rn_l2" reason="Adjacent" />
+    <disable_collisions link1="gripper_rh_p12_rn_r1" link2="gripper_rh_p12_rn_l1" reason="Never" />
+    <disable_collisions link1="gripper_rh_p12_rn_r1" link2="gripper_rh_p12_rn_l2" reason="Never" />
+    <disable_collisions link1="gripper_rh_p12_rn_r2" link2="gripper_rh_p12_rn_l1" reason="Never" />
+    <disable_collisions link1="gripper_rh_p12_rn_r2" link2="gripper_rh_p12_rn_l2" reason="Never" />
+</robot>
